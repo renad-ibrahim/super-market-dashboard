@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
+    <link href="dist-assets/css/themes/lite-purple.min.css" rel="stylesheet" />
+    <link href="dist-assets/css/plugins/perfect-scrollbar.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="icon" href="images/logo.png">
+    <link href="css/style.css?v=3" rel="stylesheet" />
+    <title>SuperMarket</title>
+</head>
+<body class="text-right">
+    <div class="container-fluid p-0 ">
+        <div class="start-page">
+            <div class="row m-0 justify-content-around">
+                <div class="col-1 d-flex justify-content-center">
+                    <button id="menu-toggle" class="btn w-100 py-2 d-flex justify-content-center align-items-center wow animate__animated animate__backInDown animate__delay-2s" type="button">
+                     <i class="fa-solid fa-forward"></i>
+                    </button>
+                 </div>
+                 <div class="col-1 d-flex justify-content-center">
+                    <button class="btn w-100 py-2 wow animate__animated animate__backInUp animate__delay-2s d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#calc"><i class="fa-solid fa-calculator mr-2"></i> <span> حاسبة </span> </button>
+                    <!-- Calculator Modal -->
+                    <div class="modal fade" id="calc" tabindex="-1" role="dialog" aria-labelledby="calc" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header justify-content-start align-items-center">
+                                <button type="button" class="close mr-0" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-muted" aria-hidden="true">&times;</span>
+                                </button>
+                                <h5 class="modal-title" id="exampleModalLongTitle">  اله حاسبة </h5>
+                            </div>
+                            <div class="modal-body calculator">
+                                <div class="formstyle">
+                                    <center>
+                            
+                                    <form name="form1">
+                                        <input type="text" class="textview" name="textview">
+                                    </form>
+                                    <table>
+                                        <tr>
+                                            <td><input type="button" class="btn" value="C" onclick=" form1.textview.value = '' "></td>
+                                            <td><input type="button" class="btn" value="B" onclick="backspace()"></td>
+                                            <td><input type="button" class="btn" value="/" onclick="insert('/')"></td>
+                                            <td><input type="button" class="btn" value="*" onclick="insert('*')"></td>                                    
+                                        </tr>
+                                        <tr>
+                                            <td><input type="button" class="btn" value="7" onclick="insert('7')"></td>
+                                            <td><input type="button" class="btn" value="8" onclick="insert('8')"></td>
+                                            <td><input type="button" class="btn" value="9" onclick="insert('9')"></td>
+                                            <td><input type="button" class="btn" value="+" onclick="insert('+')"></td>                                    
+                                        </tr>
+                                        <tr>
+                                            <td><input type="button" class="btn" value="4" onclick="insert('4')"></td>
+                                            <td><input type="button" class="btn" value="5" onclick="insert('5')"></td>
+                                            <td><input type="button" class="btn" value="6" onclick="insert('6')"></td>
+                                            <td><input type="button" class="btn" value="-" onclick="insert('-')"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="button" class="btn" value="1" onclick="insert('1')"></td>
+                                            <td><input type="button" class="btn" value="2" onclick="insert('2')"></td>
+                                            <td><input type="button" class="btn" value="3" onclick="insert('3')"></td>
+                                            <td rowspan="5"><input style = "height: 150px" type="button" class="btn" value="=" onclick="equal()"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><input style = "width: 144px" type="button" class="btn" value="0" onclick="insert('0')"></td>
+                                            <td><input type="button" class="btn" value="." onclick="insert('.')"></td>
+                                        </tr>
+                                    </table>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1 d-flex justify-content-center">
+                    <button class="btn w-100 py-2 d-flex justify-content-center align-items-center wow animate__animated animate__backInDown animate__delay-2s" type="button" data-toggle="modal" data-target="#puaseBills" ><i class="fa-solid fa-circle-pause mr-2"></i>  <span> المبيعات المعلقة </span> </button>
+                    <!--Puase Bill Modal -->
+                    <div class="modal fade" id="puaseBills" tabindex="-1" role="dialog" aria-labelledby="puaseBills" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header justify-content-start align-items-center">
+                            <button type="button" class="close mr-0" data-dismiss="modal" aria-label="Close">
+                                <span class="text-muted" aria-hidden="true">&times;</span>
+                            </button>
+                            <h5 class="modal-title" id="exampleModalLongTitle"> المبيعات المعلقة </h5>
+                            </div>
+                            <div class="modal-body">
+                               <div class="row mx-0">
+                                <div class="col-lg-6 col-sm-12 puase-bill py-2 mt-2">
+                                    <div class="bill-number text-center mb-2">0742</div>
+                                    <div class="bill-owner text-center mb-2"> <i class="fa-solid fa-user"></i> <span> زائر </span> </div>
+                                    <div class="d-flex justify-content-around mb-3">
+                                        <p> العناصر </p>
+                                        <p> 00 </p>
+                                    </div>
+                                    <div class="d-flex justify-content-around mb-3">
+                                        <p> المجموع </p>
+                                        <p> 00.0 </p>
+                                    </div>
+                                    <div class="d-flex justify-content-around">
+                                        <button class="btn save px-2"> حذف </button>
+                                        <button class="btn exit px-2"> تعديل </button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12 puase-bill py-2 mt-2">
+                                    <div class="bill-number text-center mb-2">0742</div>
+                                    <div class="bill-owner text-center mb-2"> <i class="fa-solid fa-user"></i> <span> زائر </span> </div>
+                                    <div class="d-flex justify-content-around mb-3">
+                                        <p> العناصر </p>
+                                        <p> 00 </p>
+                                    </div>
+                                    <div class="d-flex justify-content-around mb-3">
+                                        <p> المجموع </p>
+                                        <p> 00.0 </p>
+                                    </div>
+                                    <div class="d-flex justify-content-around">
+                                        <button class="btn save px-2"> حذف </button>
+                                        <button class="btn exit px-2"> تعديل </button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12 puase-bill py-2 mt-2">
+                                    <div class="bill-number text-center mb-2">0742</div>
+                                    <div class="bill-owner text-center mb-2"> <i class="fa-solid fa-user"></i> <span> زائر </span> </div>
+                                    <div class="d-flex justify-content-around mb-3">
+                                        <p> العناصر </p>
+                                        <p> 00 </p>
+                                    </div>
+                                    <div class="d-flex justify-content-around mb-3">
+                                        <p> المجموع </p>
+                                        <p> 00.0 </p>
+                                    </div>
+                                    <div class="d-flex justify-content-around">
+                                        <button class="btn save px-2"> حذف </button>
+                                        <button class="btn exit px-2"> تعديل </button>
+                                    </div>
+                                </div>
+                               </div>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn exit" data-dismiss="modal">الغاء</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-1 d-flex justify-content-center">
+                    <button class="btn w-100 py-2 wow animate__animated animate__backInRight animate__delay-1s d-flex justify-content-center align-items-center" type="button"><i class="fa-solid fa-money-bills mr-2"></i> <span> المصروفات </span>  </button>
+                </div>
+                <div class="col-1 d-flex justify-content-center">
+                    <button class="btn w-100 py-2 wow animate__animated animate__backInUp animate__delay-2s  d-flex justify-content-center align-items-center" type="button"><i class="fa-solid fa-rotate-left mr-2"></i> <span> استرجاع </span>  </button>
+                </div>
+                <div class="col-1 d-flex justify-content-center">
+                    <button class="btn w-100 py-2 wow animate__animated animate__backInDown animate__delay-3s d-flex justify-content-center align-items-center" type="button" data-toggle="modal" data-target="#details" ><i class="fa-solid fa-briefcase mr-2"></i> <span> الوردية </span> </button>  
+                    <!-- Details Modal -->
+                    <div class="modal fade" id="details" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header justify-content-start align-items-center">
+                                <button type="button" class="close mr-0" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-muted" aria-hidden="true">&times;</span>
+                                </button>
+                                <h5 class="modal-title" id="exampleModalLongTitle"> تفاصيل الوردية </h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped text-left">
+                                        <thead>
+                                            <tr class="bg-primary">
+                                                <th > طريقة الدفع </th>
+                                                <th scope="col"> المبيعات</th>
+                                                <th scope="col"> مصروف </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">النقدية فى الدرج:</th>
+                                                <td>0.00</td>
+                                                <td>--</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">الدفع نقدا:</th>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">الدفع بالشيك:</th>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">الدفع عن طريق البطاقة:</th>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">الدفع عن طريق البطاقة:</th>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"> تحويل بنكى:  </th>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"> الدفع المسبق:  </th>
+                                                <td>0.00</td>
+                                                <td>0.00</td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table text-left">
+                                        <thead>
+                                            <tr class="bg-primary">
+                                                <th scope="col"> اجمالي المبيعات </th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr >
+                                                <th scope="row"> المجموع المسدد	 </th>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"> المبلغ الإجمالي	 </th>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr >
+                                                <th scope="row"> مبيعات الائتمان: </th>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr >
+                                                <th scope="row">اجمالي المبيعات:</th>
+                                                <td>0.00</td>
+                                            </tr>
+                                            <tr >
+                                                <th scope="row"> مجموع المصاريف: </th>
+                                                <td>0.00</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped text-left">
+                                        <h3 class="text-left"> تفاصيل المنتجات المباعة </h3>
+                                        <thead>
+                                            <tr class="bg-primary">
+                                                <th scope="col">#</th>
+                                                <th scope="col">SKU</th>
+                                                <th scope="col">منتج</th>
+                                                <th scope="col">الكمية</th>
+                                                <th scope="col">الاجمالي</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td> </td>
+                                                <td> </td>
+                                                <td> 0 </td>
+                                                <td> 0.00 </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped text-left">
+                                        <h3 class="text-left">  تفاصيل المنتجات المباعة (حسب العلامة التجارية)</h3>
+                                        <thead>
+                                            <tr class="bg-primary">
+                                                <th scope="col">#</th>
+                                                <th scope="col"> العلامات التجارية </th>
+                                                <th scope="col">الكمية</th>
+                                                <th scope="col">الاجمالي</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td> </td>
+                                                <td> 0 </td>
+                                                <td> 0.00 </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="user-info text-left">
+                                    <p> <strong> اسم المستخدم: </strong> مستخم 1 </p>
+                                    <p> <strong> البريد الالكتروني : </strong> user2@gmail.com </p>
+                                    <p> <strong> اسم الفرع: </strong> فرع 1 </p>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn exit" data-dismiss="modal">الغاء</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>  
+                </div> 
+                 <div class="col-1 d-flex justify-content-center">
+                     <button class="btn w-100 py-2 wow animate__animated animate__backInLeft animate__delay-3s d-flex justify-content-center align-items-center" type="button" data-toggle="modal" data-target="#ending"><i class="fa-solid fa-hourglass-end mr-2"></i> <span> انهاء </span>  </button>
+                     <!-- ending Modal -->
+                     <div class="modal fade" id="ending" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                         <div class="modal-content">
+                             <div class="modal-header justify-content-start align-items-center">
+                                 <button type="button" class="close mr-0" data-dismiss="modal" aria-label="Close">
+                                     <span class="text-muted" aria-hidden="true">&times;</span>
+                                 </button>
+                                 <h5 class="modal-title" id="exampleModalLongTitle">انهاء الوردية </h5>
+                             </div>
+                             <div class="modal-body">
+                                 <div class="table-responsive">
+                                     <table class="table table-striped text-left">
+                                         <thead>
+                                             <tr class="bg-primary">
+                                                 <th scope="col"> طريقة الدفع </th>
+                                                 <th scope="col"> المبيعات</th>
+                                                 <th scope="col"> مصروف </th>
+                                             </tr>
+                                         </thead>
+                                         <tbody>
+                                             <tr>
+                                                 <th scope="row">النقدية فى الدرج:</th>
+                                                 <td>0.00</td>
+                                                 <td>--</td>
+                                             </tr>
+                                             <tr>
+                                                 <th scope="row">الدفع نقدا:</th>
+                                                 <td>0.00</td>
+                                                 <td>0.00</td>
+                                             </tr>
+                                             <tr>
+                                                 <th scope="row">الدفع بالشيك:</th>
+                                                 <td>0.00</td>
+                                                 <td>0.00</td>
+                                             </tr>
+                                             <tr>
+                                                 <th scope="row">الدفع عن طريق البطاقة:</th>
+                                                 <td>0.00</td>
+                                                 <td>0.00</td>
+                                             </tr>
+                                             <tr>
+                                                 <th scope="row">الدفع عن طريق البطاقة:</th>
+                                                 <td>0.00</td>
+                                                 <td>0.00</td>
+                                             </tr>
+                                             <tr>
+                                                 <th scope="row"> تحويل بنكى:  </th>
+                                                 <td>0.00</td>
+                                                 <td>0.00</td>
+                                             </tr>
+                                             <tr>
+                                                 <th scope="row"> الدفع المسبق:  </th>
+                                                 <td>0.00</td>
+                                                 <td>0.00</td>
+                                             </tr>
+                                             
+                                         </tbody>
+                                     </table>
+                                 </div>
+                                 <div class="table-responsive">
+                                     <table class="table table-striped text-left">
+                                         <thead>
+                                             <tr class="bg-primary">
+                                                 <th scope="col"> اجمالي المبيعات </th>
+                                                 <th scope="col"></th>
+                                             </tr>
+                                         </thead>
+                                         <tbody>
+                                             <tr>
+                                                 <th scope="row"> المجموع المسدد	 </th>
+                                                 <td>0.00</td>
+                                             </tr>
+                                             <tr>
+                                                 <th scope="row"> المبلغ الإجمالي	 </th>
+                                                 <td>0.00</td>
+                                             </tr>
+                                             <tr>
+                                                 <th scope="row"> مبيعات الائتمان: </th>
+                                                 <td>0.00</td>
+                                             </tr>
+                                             <tr>
+                                                 <th scope="row">اجمالي المبيعات:</th>
+                                                 <td>0.00</td>
+                                             </tr>
+                                             <tr >
+                                                 <th scope="row"> مجموع المصاريف: </th>
+                                                 <td>0.00</td>
+                                             </tr>
+                                         </tbody>
+                                     </table>
+                                 </div>
+                                 <div class="table-responsive">
+                                     <table class="table table-striped text-left">
+                                         <h3 class="text-left"> تفاصيل المنتجات المباعة </h3>
+                                         <thead>
+                                             <tr class="bg-primary">
+                                                 <th scope="col">#</th>
+                                                 <th scope="col">SKU</th>
+                                                 <th scope="col">منتج</th>
+                                                 <th scope="col">الكمية</th>
+                                                 <th scope="col">الاجمالي</th>
+                                             </tr>
+                                         </thead>
+                                         <tbody>
+                                             <tr>
+                                                 <th scope="row">1</th>
+                                                 <td> </td>
+                                                 <td> </td>
+                                                 <td> 0 </td>
+                                                 <td> 0.00 </td>
+                                             </tr>
+                                         </tbody>
+                                     </table>
+                                 </div>
+                                 <div class="table-responsive">
+                                     <table class="table table-striped text-left">
+                                         <h3 class="text-left">  تفاصيل المنتجات المباعة (حسب العلامة التجارية)</h3>
+                                         <thead>
+                                             <tr class="bg-primary">
+                                                 <th scope="col">#</th>
+                                                 <th scope="col"> العلامات التجارية </th>
+                                                 <th scope="col">الكمية</th>
+                                                 <th scope="col">الاجمالي</th>
+                                             </tr>
+                                         </thead>
+                                         <tbody>
+                                             <tr>
+                                                 <th scope="row">1</th>
+                                                 <td> </td>
+                                                 <td> 0 </td>
+                                                 <td> 0.00 </td>
+                                             </tr>
+                                         </tbody>
+                                     </table>
+                                 </div>
+                                 <div class="funds pt-4">
+                                     <div class="row">
+                                         <div class="col-lg-4 col-md-4 col-sm-12">
+                                             <label class="float-left"> مجموع النقد:* </label>
+                                             <input class="form-control" required="" min="0" name="total_card_slips" type="text" value="0" id="total_card_slips">
+                                         </div>
+                                         <div class="col-lg-4 col-md-4 col-sm-12">
+                                             <label class="float-left"> العدد الإجمالي للبطاقات:*  </label>
+                                             <input class="form-control" required="" min="0" name="total_card_slips" type="number" value="0" id="total_card_slips">
+                                         </div>
+                                         <div class="col-lg-4 col-md-4 col-sm-12">
+                                             <label class="float-left"> العدد الإجمالي للبطاقات:*  </label>
+                                             <input class="form-control" required="" min="0" name="total_card_slips" type="number" value="0" id="total_card_slips">
+                                         </div>
+                                     </div>
+                                     <div class="table-responsive mt-4">
+                                         <h3  class="text-left"> الفئات النقدية </h3>
+                                         <table class="table text-left">
+                                             <thead>
+                                                 <tr class="bg-primary">
+                                                     <th scope="col"> فئة </th>
+                                                     <th scope="col"></th>
+                                                     <th scope="col" class="text-center"> عدد </th>
+                                                     <th scope="col"></th>
+                                                     <th scope="col"> المجموع الكلي </th>
+                                                 </tr>
+                                             </thead>
+                                             <tbody>
+                                                 <tr >
+                                                     <th scope="row">200</th>
+                                                     <td>X</td>
+                                                     <td>
+                                                         <input oninput="multiply200()" id="in200" class="form-control cash_denomination input-sm" min="0" data-denomination="100" style="width: 100px; margin:auto;" name="denominations[100]" type="number">
+                                                     </td>
+                                                     <td>=</td>
+                                                     <td id="res2">0.00</td>
+                                                 </tr>
+                                                 <tr >
+                                                     <th scope="row">100</th>
+                                                     <td>X</td>
+                                                     <td>
+                                                         <input oninput="multiply100()" id="in100" class="form-control cash_denomination input-sm" min="0" data-denomination="100" style="width: 100px; margin:auto;" name="denominations[100]" type="number">
+                                                     </td>
+                                                     <td>=</td>
+                                                     <td id="res1">0.00</td>
+                                                 </tr>
+                                                 <tr >
+                                                     <th scope="row">50</th>
+                                                     <td>X</td>
+                                                     <td>
+                                                         <input oninput="multiply50()" id="in50" class="form-control cash_denomination input-sm" min="0" data-denomination="100" style="width: 100px; margin:auto;" name="denominations[100]" type="number">
+                                                     </td>
+                                                     <td>=</td>
+                                                     <td id="res5">0.00</td>
+                                                 </tr>
+                                                 <tr >
+                                                     <th scope="row">20</th>
+                                                     <td>X</td>
+                                                     <td>
+                                                         <input oninput="multiply20()" id="in20" class="form-control cash_denomination input-sm" min="0" data-denomination="100" style="width: 100px; margin:auto;" name="denominations[100]" type="number">
+                                                     </td>
+                                                     <td>=</td>
+                                                     <td id="res20">0.00</td>
+                                                 </tr>
+                                             </tbody>
+                                         </table>
+                                     </div>
+                                 </div>
+                                 <div class="user-info text-left">
+                                     <p> <strong> اسم المستخدم: </strong> مستخم 1 </p>
+                                     <p> <strong> البريد الالكتروني : </strong> user2@gmail.com </p>
+                                     <p> <strong> اسم الفرع: </strong> فرع 1 </p>
+                                 </div>
+                             </div>
+                             <div class="modal-footer justify-content-around">
+                             <button type="button" class="btn exit" data-dismiss="modal">الغاء</button>
+                             <button type="button" class="btn save mr-2" data-dismiss="modal">انهاء الوردية</button>
+                             </div>
+                         </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-1 d-flex justify-content-center">
+                     <button class="btn w-100 py-2 text-center wow animate__animated animate__backInDown animate__delay-2s d-flex justify-content-center align-items-center "data-fullscreen="" ><i class="fa-solid fa-arrows-up-down-left-right mr-2" ></i> <span> تكبير </span> </button>
+                 </div>
+                 <div class="col-1 d-flex justify-content-center">
+                     <button class="btn w-100 py-2 wow animate__animated animate__backInDown animate__delay-1s d-flex justify-content-center align-items-center"> <i class="fa-solid fa-backward"></i></button>
+                 </div>
+            </div>
+        </div>
+        <div class="row inputs px-2">
+            <div class="col-lg-2 col-md-6 col-sm-6 mt-3">
+                <div class="input-group mb-3  ">
+                    <select class=" custom-select wow animate__animated animate__fadeIn animate__delay-1s">
+                    <option selected>  الفرع </option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mt-3 d-flex">
+                <div class="input-group ">
+                    <select class="custom-select wow animate__animated animate__fadeIn animate__delay-2s">
+                    <option selected>  العميل </option>
+                    <option value="1">محمد</option>
+                    <option value="2">احمد</option>
+                    <option value="3">علي</option>
+                    </select>
+                </div>
+                <button class="btn add-client wow animate__animated animate__fadeIn animate__delay-2s" type="button"  data-toggle="modal" data-target="#addClient"> <i class="fa-solid fa-circle-plus"></i> </button>
+                <!-- ADD CLENT Modal -->
+                <div class="modal fade" id="addClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header justify-content-start align-items-center">
+                        <button type="button" class="close mr-0" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-muted">&times;</span>
+                        </button>
+                        <h5 class="modal-title" id="exampleModalLabel"> اضافة جهة اتصال </h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <input class="form-control bg-transparent" placeholder="معرف الاتصال" name="contact_id" type="text" id="contact_id">
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <select class="custom-select" id="inputGroupSelect02">
+                                        <option selected> لا أحد </option>
+                                        <option value="1">One</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-lg-3 col-md-6 col-sm-12 mt-4">
+                                    <input class="form-control bg-transparent" required="" placeholder="الموبايل" name="mobile" type="text" id="mobile" aria-required="true">
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12 mt-4">
+                                    <input class="form-control bg-transparent" required="" placeholder=" الموبايل البديل" name="mobile" type="text" id="mobile" aria-required="true">
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12 mt-4">
+                                    <input class="form-control bg-transparent" required="" placeholder="الهاتف" name="mobile" type="text" id="mobile" aria-required="true">
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12 mt-4">
+                                    <input class="form-control bg-transparent" required="" placeholder="البريد الألكتروني" name="mobile" type="text" id="mobile" aria-required="true">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
+                                    <select class="custom-select" id="inputGroupSelect02">
+                                        <option selected> لا أحد </option>
+                                        <option value="1">One</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 mt-4 text-right pt-2 d-flex align-items-center">
+                                <input type="radio"/> <label class=" ml-2"> فرد </label>
+                                <input type="radio" class=" ml-3" /> <label class=" ml-2"> النشاط </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer  justify-content-around">
+                        <button type="button" class="btn exit" data-dismiss="modal"> الغاء </button>
+                        <button type="button" class="btn save"> حفظ </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-6 mt-3">
+                <div class="form-group d-flex ">
+                    <input class="form-control bg-white wow animate__animated animate__fadeIn animate__delay-3s" type="text" placeholder=" المنتج   ">
+                    <button class="btn add-product wow animate__animated animate__fadeIn animate__delay-2s" type="button"  data-toggle="modal" data-target="#newProduct"> <i class="fa-solid fa-circle-plus"></i> </button>
+                </div>
+                <!-- Add New Product Modal -->
+                <div class="modal fade " id="newProduct" tabindex="-1" role="dialog" aria-labelledby="newProduct" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header justify-content-start align-items-center">
+                        <button type="button" class="close mr-0" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-muted">&times;</span>
+                        </button>
+                        <h5 class="modal-title" id="exampleModalLabel"> منتج جديد </h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-12 mt-4">
+                                    <label class="float-left"> أسم المنتج (التعيين) </label>
+                                    <input class="form-control bg-transparent" placeholder=" أسم المنتج (التعيين) " name="contact_id" type="text" id="contact_id">
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12  mt-4">
+                                    <label class="float-left"> SKU </label>
+                                    <input class="form-control bg-transparent" placeholder="SKU " name="contact_id" type="text" id="contact_id">
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12  mt-4">
+                                    <label class="float-left"> نوع الباركود* </label>
+                                    <select class="custom-select" id="inputGroupSelect02">
+                                        <option selected> Code 128  </option>
+                                        <option value="1">One</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-12  mt-4">
+                                    <label class="float-left"> الوحدة </label>
+                                    <select class="custom-select" id="inputGroupSelect02">
+                                        <option selected> يرجي الاختيار  </option>
+                                        <option value="1">One</option>
+                                        <option value="1">two</option>
+                                        <option value="1">Three</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12  mt-4">
+                                    <label class="float-left"> الوحدات الفرعية ذات الصلة: </label>
+                                    <input class="form-control bg-transparent" placeholder="" name="contact_id" type="text" id="contact_id">
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12  mt-4">
+                                    <label class="float-left"> العلامة التجارية </label>
+                                    <select class="custom-select" id="inputGroupSelect02">
+                                        <option selected>يرجي الاختيار  </option>
+                                        <option value="1">One</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-12  mt-4">
+                                    <label class="float-left"> الصنف </label>
+                                    <select class="custom-select" id="inputGroupSelect02">
+                                        <option selected> يرجي الاختيار  </option>
+                                        <option value="1">One</option>
+                                        <option value="1">two</option>
+                                        <option value="1">Three</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12  mt-4">
+                                    <label class="float-left"> الصنف الفرعي </label>
+                                    <select class="custom-select" id="inputGroupSelect02">
+                                        <option selected> يرجي الاختيار  </option>
+                                        <option value="1">One</option>
+                                        <option value="1">two</option>
+                                        <option value="1">Three</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12  mt-4 text-left pt-2 d-flex align-items-center">
+                                    <input type="checkbox" /> 
+                                    <label class="mb-0 ml-2"> ادارة المخزون </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-12 mt-4">
+                                    <label class="float-left"> تنبية الكمية </label>
+                                    <input class="form-control bg-transparent" placeholder=" تنبيه الكمية" name="contact_id" type="text" id="contact_id">
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12  mt-4">
+                                    <label class="float-left"> فروع النشاط </label>
+                                    <input class="form-control bg-transparent" placeholder=" " name="contact_id" type="text" id="contact_id">
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12  mt-4">
+                                    <label class="float-left"> وزن </label>
+                                    <input class="form-control bg-transparent" placeholder="وزن " name="contact_id" type="text" id="contact_id">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-12 mt-4">
+                                    <label class="float-left"> الضريبة المطبقة  </label>
+                                    <select class="custom-select" id="inputGroupSelect02">
+                                        <option selected> لا أحد   </option>
+                                        <option value="1">One</option>
+                                    </select>                                                                            </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12  mt-4">
+                                    <label class="float-left"> نوع ضريبة المبيعات  </label>
+                                    <select class="custom-select" id="inputGroupSelect02">
+                                        <option selected> باستثناء </option>
+                                        <option value="1">One</option>
+                                    </select>  
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12  d-flex align-items-center mt-4 text-left">
+                                    <input type="checkbox"/>
+                                     <label class="mb-0 ml-2"> تفعيل الرقم التسلسلي  </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-around">
+                        <button type="button" class="btn exit" data-dismiss="modal"> الغاء </button>
+                        <button type="button" class="btn save px-5"> حفظ </button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6 mt-3">
+                <div class="input-group mb-3 ">
+                    <select class="custom-select wow animate__animated animate__fadeIn animate__delay-4s">
+                    <option selected>  البيع </option>
+                    <option value="1">السعر الافتراضي</option>
+                    <option value="2"> مجموع سعر البيع</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+      <div id="wrapper" class="toggled">
+          <!-- Sidebar -->
+          <div id="sidebar-wrapper">
+              <div class="sidebar-content">
+                  <div class="side">
+                    <div class="logo bg-transparent text-center m-auto wow animate__animated animate__flipInX animate__delay-1s">
+                        <img src="images/logo.png" class="bg-transparent">
+                    </div>
+                    <div class="casher-info wow animate__animated animate__flipInX animate__delay-2s ">
+                      <div class="casher-name">
+                          <p class="mb-0">  <span> الكاشير : </span> محمد </p>
+                      </div>
+                      <div class="casher-date">
+                          <p class="mb-0"> <span class="time"> 3:40pm </span> <span class="date"> 24/1/2023 </span>  </p>
+                      </div>
+                    </div>
+                    <div class="bill-total wow animate__animated animate__flipInX animate__delay-2s ">
+                        <div class="row align-items-center">
+                            <div class="col-6 text-left">
+                                <h4 class="mb-0">   التوصيل  </h4>
+                            </div>
+                            <div class="col-6 number ">
+                                <h4 class="mb-0"> 11 </h4>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-6 text-left">
+                                <h4 class="mb-0">   الخصم  </h4>
+                            </div>
+                            <div class="col-6 number">
+                                <h4 class="mb-0">- 10.00 </h4>
+                            </div>
+                        </div>
+                        <div class="row total-price">
+                            <div class="col-sm-12 text-center">
+                                <h4 class="mb-0"> <span>  الأجمالي  </span>  </h4>
+                            </div>
+                        </div>
+                        <div class="row total-price">
+                          <div class="col-sm-12 text-center">
+                              <h4 class="mb-0"> 170.00 </h4>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row payment-methods wow animate__animated animate__flipInX animate__delay-3s">
+                      <button class="btn wow animate__animated animate__heartBeat"> دفع كاش   </button>
+                  </div>
+                  </div>
+              </div>
+          </div> <!-- /#sidebar-wrapper -->
+          <!-- Page Content -->
+          <div id="page-content-wrapper pt-0">
+            <div class="main-content">
+              <!-- Start Table  -->
+                  <div class="row tableFixHead m-0">
+                        <table class="table table-hover mb-0 text-center ">
+                            <thead class= "table-success wow animate__animated animate__backInRight animate__delay-1s">
+                                <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col"> الصنف </th>
+                                        <th scope="col"> السعر </th>
+                                        <th scope="col"> الوحدة </th>
+                                        <th scope="col"> الكمية  </th>
+                                        <th scope="col"> الاجمالي </th>
+                                        <th scope="col">الاوامر</th>
+                                </tr>
+                              </thead>
+                              <tbody id="TBody" class=" wow animate__animated animate__backInRight animate__delay-2s">
+                                <tr id="TRow">
+                                  <th> 1 </th>
+                                  <td> برسيل 1 كيلو </td>
+                                  <td> <input type= "number" class= "form-control bg-transparent text-center m-auto " name="qty" onkeyup="Calc(this)" onchange="Calc(this)"> </td>
+                                  <td> 
+                                    <select class="custom-select wow animate__animated animate__fadeIn animate__delay-2s">
+                                        <option selected>  كيلو </option>
+                                        <option value="1">عبوة</option>
+                                        <option value="2">لتر</option>
+                                        <option value="3">...</option>
+                                    </select> 
+                                  </td>
+                                  <td> 
+                                    <div class="form-type-number"> 
+                                        <input class="bg-transparent" id="quantity" max="100" min="1" name="rate" type="number" value="1" onkeyup="Calc(this)" onchange="Calc(this)"/>
+                                        <div class="btn-minus" onclick="Calc(this)">-</div>
+                                        <div class="btn-plus" onclick="Calc(this)" >+</div>
+                                     </div>
+                                  </td>
+                                  <td> <input type= "text" class= "form-control bg-transparent text-center m-auto " name="amt" value="0"></td>
+                                  <td class= "NoPrint">
+                                     <div class="d-flex align-items-center justify-content-center">
+                                        <span><i class="fa fa-edit edit"></i></span>
+                                        <span onclick= "BtnDel(this)" class="delete-row">  <i class="fa-solid fa-trash"></i> </span>
+                                     </div>
+                                  </td>
+                                </tr>
+                                 <tr>
+                                    <th> 5 </th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <th> 6 </th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <th> 7 </th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <th> 8 </th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <th> 9</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <th> 9</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <th> 9</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <th> 9</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <th> 9</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <th> 9</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <th> 9</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 <tr>
+                                    <th> 9</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                 </tr>
+                                 
+                              </tbody>
+                              <tfoot class="wow animate__animated animate__backInDown animate__delay-3s">
+                                    <tr>
+                                        <td id="total-rows"> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td class="d-flex align-items-center justify-content-center">
+                                            <span class="mr-2">الأجمالي</span>
+                                            <input type="text" class=  form-control text-end" id="FTotal" name="FTotal">
+                                        </td>
+                                        <td> </td>
+                                    </tr>
+                              </tfoot>
+                        </table>
+                  </div>
+              <!-- End Table  -->
+            </div> 
+          </div> <!-- /#page-content-wrapper -->
+      </div>
+      <!-- * * * * * * * * *start end Page  ** *  **  ** * *  -->
+      <div class="end-page">
+        <div class="row mx-0 justify-content-around">
+            <div class="col-1 d-flex justify-content-center">
+                <button class="btn w-100 py-2 wow animate__animated animate__backInDown animate__delay-3s d-flex justify-content-center align-items-center" type="button" ><i class="fa fa-close  close"></i> </button>   
+            </div>
+            <div class="col-1 d-flex justify-content-center">
+                <button class="btn w-100 py-2 wow animate__animated animate__backInDown animate__delay-3s d-flex justify-content-center align-items-center" type="button" ><i class="fa-solid fa-briefcase mr-2"></i> <span> فيزا </span> </button>  
+            </div> 
+            <div class="col-1 d-flex justify-content-center">
+                <button class="btn w-100 py-2 wow animate__animated animate__backInLeft animate__delay-3s d-flex justify-content-center align-items-center" type="button" ><i class="fa-solid fa-hourglass-end mr-2"></i> <span> متعدد </span>  </button>
+            </div>
+            <div class="col-1 d-flex justify-content-center">
+                <button class="btn w-100 py-2 wow animate__animated animate__backInUp animate__delay-3s d-flex justify-content-center align-items-center"><i class="fa-solid fa-eye mr-2"></i> <span> عرض </span> </button>
+            </div>
+            <div class="col-1 d-flex justify-content-center">
+                <button class="btn w-100 py-2 wow animate__animated animate__backInUp animate__delay-3s d-flex justify-content-center align-items-center"><i class="fa-brands fa-firstdraft mr-2"></i> <span> مسودة </span> </button>
+            </div>
+            <div class="col-1 d-flex justify-content-center">
+                <button class="btn w-100 py-2 d-flex align-items-center justify-content-center"><i class="fa-solid fa-circle-pause mr-2"></i> <span>  تعليق </span>  </button>
+            </div>
+            <div class="col-1 d-flex justify-content-center">
+                <button class="btn w-100 py-2 wow animate__animated animate__backInLeft animate__delay-1s d-flex justify-content-center align-items-center"><i class="fa-solid fa-receipt mr-2"></i> <span> الفواتير </span> </button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="dist-assets/js/plugins/jquery-3.3.1.min.js"></script>
+    <script src="dist-assets/js/plugins/bootstrap.bundle.min.js"></script>
+    <script src="dist-assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="dist-assets/js/scripts/script.min.js"></script>
+    <script src="dist-assets/js/scripts/sidebar.compact.script.min.js"></script>
+    <script src="dist-assets/js/scripts/customizer.script.min.js"></script>
+    <script src="dist-assets/js/plugins/echarts.min.js"></script>
+    <script src="dist-assets/js/scripts/echart.options.min.js"></script>
+    <script src="dist-assets/js/plugins/datatables.min.js"></script>
+    <script src="dist-assets/js/scripts/dashboard.v2.script.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="js/script.js?v=3"></script>
+</body>
+</html>
+
+<!-- <div class="row tableFixHead m-0">
+    <div class="col-sm-12 p-0">
+      <table class="table table-hover mb-0 text-center ">
+          <thead class=" wow animate__animated animate__backInRight animate__delay-1s">
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col"> الصنف </th>
+                  <th scope="col"> السعر </th>
+                  <th scope="col"> الوحدة </th>
+                  <th scope="col"> الكمية  </th>
+                  <th scope="col"> الاجمالي </th>
+                  <th scope="col">الاوامر</th>
+              </tr>
+          </thead>
+          <tbody id="tableBody" class=" wow animate__animated animate__backInRight animate__delay-2s">                       
+            <tr>
+                <td> 1 </td>
+                <td > برسيل 1 كيلو </td>
+                <td > <input type="text" id="price" class="form-control bg-transparent w-25 text-center m-auto"/> </td>
+                <td > كيلو </td>
+                <td class=" d-flex justify-content-center align-items-center"><i class="fa-solid fa-plus plus mr-2"></i> <input type="text"  class="form-control bg-transparent w-25 text-center"/> <i class="fa-solid fa-minus minus ml-2"></i></td>
+                <td  id="total"> 0 </td>
+                <td >
+                    <span><i class="fa fa-edit edit"></i></span>
+                    <span><i class="fa fa-close delete-row"></i></span>
+                </td>
+            </tr>
+            <tr>
+                <td> 2 </td>
+                <td> برسيل 1 كيلو </td>
+                <td > <input type="text" id="price" class="form-control bg-transparent w-25 text-center m-auto"/> </td>
+                <td> كيلو </td>
+                <td class=" d-flex justify-content-center align-items-center"><i class="fa-solid fa-plus plus mr-2"></i> <input type="text"  class="form-control bg-transparent w-25 text-center"/> <i class="fa-solid fa-minus minus ml-2"></i></td>
+                <td id="total"> 0 </td>
+                <td>
+                    <span><i class="fa fa-edit edit"></i></span>
+                    <span><i class="fa fa-close delete-row"></i></span>
+                </td>
+            </tr>
+            <tr>
+                <td> 3 </td>
+                <td> برسيل 1 كيلو </td>
+                <td > <input type="text" id="price" class="form-control bg-transparent w-25 text-center m-auto"/> </td>
+                <td> كيلو </td>
+                <td class=" d-flex justify-content-center align-items-center"><i class="fa-solid fa-plus plus mr-2"></i> <input type="text"  class="form-control bg-transparent w-25 text-center"/> <i class="fa-solid fa-minus minus ml-2"></i></td>
+                <td id="total"> 0 </td>
+                <td>
+                    <span><i class="fa fa-edit edit"></i></span>
+                    <span><i class="fa fa-close delete-row"></i></span>
+                </td>
+            </tr>
+            <tr>
+                <td> 4 </td>
+                <td> برسيل 1 كيلو </td>
+                <td > <input type="text" id="price" class="form-control bg-transparent w-25 text-center m-auto"/> </td>
+                <td> كيلو </td>
+                <td class=" d-flex justify-content-center align-items-center"><i class="fa-solid fa-plus plus mr-2"></i> <input type="text"  class="form-control bg-transparent w-25 text-center"/> <i class="fa-solid fa-minus minus ml-2"></i></td>
+                <td id="total"> 0 </td>
+                <td>
+                    <span><i class="fa fa-edit edit"></i></span>
+                    <span><i class="fa fa-close delete-row"></i></span>
+                </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+          <tfoot class=" wow animate__animated animate__backInDown animate__delay-3s">
+              <tr>
+                  <th> <span id="total-rows">  </span> </th>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td class="d-flex justify-content-center align-items-center">الأجمالي  <span id="totalPrice" class="ml-2"> 0 </span>  </td>
+                  <td> </td>
+              </tr>
+          </tfoot>
+      </table>
+    </div>
+</div> -->
